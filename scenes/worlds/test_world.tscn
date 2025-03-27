@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfhfvsh6y8ypv"]
+[gd_scene load_steps=14 format=3 uid="uid://bfhfvsh6y8ypv"]
 
 [ext_resource type="PackedScene" uid="uid://bb1e51bf0kfc8" path="res://scenes/PlayerData/player.tscn" id="1_k3ref"]
 [ext_resource type="Texture2D" uid="uid://bmg1k86caldmb" path="res://icon.svg" id="2_nvj10"]
-[ext_resource type="Script" uid="uid://d0b17ito57hdm" path="res://reflectedPlayer.gd" id="3_havs6"]
+[ext_resource type="Script" uid="uid://d0b17ito57hdm" path="res://mirrorPoint.gd" id="3_havs6"]
+[ext_resource type="Script" uid="uid://dwqoove2s2pn5" path="res://reflectedPlayer.gd" id="3_wk3yy"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k3ref"]
 size = Vector3(1, 0.32, 1)
@@ -77,6 +78,9 @@ position_smoothing_enabled = true
 script = ExtResource("3_havs6")
 
 [node name="Reflection" type="CharacterBody2D" parent="MirrorPoint"]
+position = Vector2(-622, 152)
+up_direction = Vector2(0, 1)
+script = ExtResource("3_wk3yy")
 
 [node name="Sprite2D" type="Sprite2D" parent="MirrorPoint/Reflection"]
 texture = ExtResource("2_nvj10")
