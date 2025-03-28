@@ -1,10 +1,12 @@
 class_name MirrorPoint
 extends Node2D
 
+@export var player: CharacterBody2D
+
 func _ready() -> void:
-	var distance = $"../Player".global_position - global_position
+	var distance = player.global_position - global_position
 
 	$Reflection.global_position = Vector2(
-		$"../Player".global_position.x,
+		player.global_position.x,
 		global_position.y - distance.y
 	)

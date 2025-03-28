@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bfhfvsh6y8ypv"]
 
 [ext_resource type="PackedScene" uid="uid://bb1e51bf0kfc8" path="res://scenes/PlayerData/player.tscn" id="1_k3ref"]
-[ext_resource type="Script" uid="uid://d0b17ito57hdm" path="res://mirrorPoint.gd" id="3_havs6"]
+[ext_resource type="Script" uid="uid://d0b17ito57hdm" path="res://scenes/mirrorPoint.gd" id="3_havs6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k3ref"]
 size = Vector3(1, 0.32, 1)
@@ -70,8 +70,9 @@ mirroredCopy = NodePath("../MirrorPoint/Reflection")
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
-[node name="MirrorPoint" type="Node2D" parent="."]
+[node name="MirrorPoint" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("3_havs6")
+player = NodePath("../Player")
 
 [node name="Reflection" parent="MirrorPoint" node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_k3ref")]
 is_reflection = true

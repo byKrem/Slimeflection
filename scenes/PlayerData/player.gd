@@ -16,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	if is_reflection:
 		$AnimatedSprite2D.flip_v = true
+		$AnimatedSprite2D.material = load("res://scenes/PlayerData/ReflectedMaterial.tres")
 		JUMP_SPEED = -JUMP_SPEED
 		gravity = -gravity
 		up_direction = Vector2(0,1)
@@ -64,9 +65,10 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = true
 
 	move_and_slide()
-	if get_slide_collision_count() == 0:
-		mirroredCopy.reflect_colide = Vector2(0,0)
-	else:
-		for i in get_slide_collision_count():
-			var collition = get_slide_collision(i)
-			mirroredCopy.reflect_colide = collition.get_normal()
+	if mirroredCopy:
+		if get_slide_collision_count() == 0:
+			mirroredCopy.reflect_colide = Vector2(0,0)
+		else:
+			for i in get_slide_collision_count():
+				var collition = get_slide_collision(i)
+				mirroredCopy.reflect_colide = collition.get_normal()

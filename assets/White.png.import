@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc6gsjuhou33p"
-path="res://.godot/imported/SlimeSpriteSheet.png-129756a2d6c95d2eeab452d85b5eae8c.ctex"
+uid="uid://crtxnk4mg0od0"
+path="res://.godot/imported/White.png-61df94c224378dce99890167b7b5eef9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/SlimeSpriteSheet.png"
-dest_files=["res://.godot/imported/SlimeSpriteSheet.png-129756a2d6c95d2eeab452d85b5eae8c.ctex"]
+source_file="res://assets/White.png"
+dest_files=["res://.godot/imported/White.png-61df94c224378dce99890167b7b5eef9.ctex"]
 
 [params]
 

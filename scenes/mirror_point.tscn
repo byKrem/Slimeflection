@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8co2gn6fgxuy"]
+
+[ext_resource type="Script" uid="uid://d0b17ito57hdm" path="res://scenes/mirrorPoint.gd" id="1_ik7rr"]
+[ext_resource type="Texture2D" uid="uid://crtxnk4mg0od0" path="res://assets/White.png" id="2_d42cg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6agud"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ik7rr"]
+size = Vector2(20, 24.3902)
+
+[node name="MirrorPoint" type="StaticBody2D"]
+script = ExtResource("1_ik7rr")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+scale = Vector2(200, 20)
+mesh = SubResource("BoxMesh_6agud")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(10, 0.82)
+shape = SubResource("RectangleShape2D_ik7rr")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, 107)
+scale = Vector2(200, 194)
+blend_mode = 2
+texture = ExtResource("2_d42cg")
+texture_scale = 0.01
