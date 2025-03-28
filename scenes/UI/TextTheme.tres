@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bdg2t4vau6s17"]
+
+[ext_resource type="FontFile" uid="uid://0v8n274qb5e1" path="res://assets/RaccoonSerif-Base.ttf" id="1_23fvl"]
+
+[resource]
+default_font = ExtResource("1_23fvl")
+default_font_size = 16
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_23fvl")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_23fvl")

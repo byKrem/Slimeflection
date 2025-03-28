@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://bfhfvsh6y8ypv"]
 
 [ext_resource type="PackedScene" uid="uid://bb1e51bf0kfc8" path="res://scenes/PlayerData/player.tscn" id="1_k3ref"]
-[ext_resource type="Script" uid="uid://d0b17ito57hdm" path="res://scenes/mirrorPoint.gd" id="3_havs6"]
+[ext_resource type="PackedScene" uid="uid://c8co2gn6fgxuy" path="res://scenes/mirror_point.tscn" id="2_wdhyl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_k3ref"]
 size = Vector3(1, 0.32, 1)
@@ -64,16 +64,15 @@ shape = SubResource("WorldBoundaryShape2D_wdhyl")
 
 [node name="Player" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_k3ref")]
 position = Vector2(-858, -157)
-mirroredCopy = NodePath("../MirrorPoint/Reflection")
+mirroredCopy = NodePath("../MirrorPoint2/Reflection")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
-[node name="MirrorPoint" type="Node2D" parent="." node_paths=PackedStringArray("player")]
-script = ExtResource("3_havs6")
+[node name="MirrorPoint2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_wdhyl")]
 player = NodePath("../Player")
 
-[node name="Reflection" parent="MirrorPoint" node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_k3ref")]
+[node name="Reflection" parent="MirrorPoint2" node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_k3ref")]
 is_reflection = true
 mirroredCopy = NodePath("../../Player")
