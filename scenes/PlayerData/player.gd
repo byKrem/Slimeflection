@@ -20,6 +20,11 @@ func _ready():
 		JUMP_SPEED = -JUMP_SPEED
 		gravity = -gravity
 		up_direction = Vector2(0,1)
+		var distance = mirroredCopy.global_position - global_position
+		global_position = Vector2(
+			mirroredCopy.global_position.x,
+			global_position.y - distance.y
+		)
 
 func _physics_process(delta: float) -> void:
 	if !is_on_floor():
@@ -66,6 +71,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	if mirroredCopy:
+		mirroredCopy.global_position.x = (mirroredCopy.global_position.x + global_position.x)/2
 		if get_slide_collision_count() == 0:
 			mirroredCopy.reflect_colide = Vector2(0,0)
 		else:
