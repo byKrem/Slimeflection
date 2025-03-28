@@ -78,7 +78,6 @@ position_smoothing_enabled = true
 script = ExtResource("3_havs6")
 
 [node name="Reflection" type="CharacterBody2D" parent="MirrorPoint"]
-position = Vector2(-622, 152)
 up_direction = Vector2(0, 1)
 script = ExtResource("3_wk3yy")
 
