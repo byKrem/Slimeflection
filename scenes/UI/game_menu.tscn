@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bdg2t4vau6s17" path="res://scenes/UI/TextTheme.tres" id="1_aeiwg"]
 [ext_resource type="PackedScene" uid="uid://bfhfvsh6y8ypv" path="res://scenes/worlds/test_world.tscn" id="3_ywgnr"]
-[ext_resource type="PackedScene" uid="uid://bwplps4itk5l1" path="res://scenes/worlds/tutorial_world.tscn" id="4_25th1"]
+[ext_resource type="PackedScene" uid="uid://bwplps4itk5l1" path="res://scenes/worlds/Tutorial/tutorial_world.tscn" id="4_25th1"]
 [ext_resource type="PackedScene" uid="uid://btkomugt3p8sp" path="res://scenes/UI/change_scene_button.tscn" id="4_ywgnr"]
 
 [node name="GameMenu" type="Control"]
@@ -29,6 +29,13 @@ layout_mode = 2
 theme = ExtResource("1_aeiwg")
 theme_override_font_sizes/font_size = 96
 text = "Slimeflection"
+
+[node name="Label2" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_aeiwg")
+theme_override_font_sizes/font_size = 24
+text = "UNDER CONSTRUCT"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

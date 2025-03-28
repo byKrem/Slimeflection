@@ -64,15 +64,14 @@ shape = SubResource("WorldBoundaryShape2D_wdhyl")
 
 [node name="Player" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_k3ref")]
 position = Vector2(-858, -157)
-mirroredCopy = NodePath("../MirrorPoint2/Reflection")
+mirroredCopy = NodePath("../Reflection")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
-[node name="MirrorPoint2" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_wdhyl")]
-player = NodePath("../Player")
-
-[node name="Reflection" parent="MirrorPoint2" node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_k3ref")]
+[node name="Reflection" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_k3ref")]
 is_reflection = true
-mirroredCopy = NodePath("../../Player")
+mirroredCopy = NodePath("../Player")
+
+[node name="MirrorPoint" parent="." instance=ExtResource("2_wdhyl")]

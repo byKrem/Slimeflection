@@ -7,5 +7,5 @@ default_font = ExtResource("1_23fvl")
 default_font_size = 16
 Button/font_sizes/font_size = 16
 Button/fonts/font = ExtResource("1_23fvl")
-Label/font_sizes/font_size = 16
+Label/font_sizes/font_size = 64
 Label/fonts/font = ExtResource("1_23fvl")

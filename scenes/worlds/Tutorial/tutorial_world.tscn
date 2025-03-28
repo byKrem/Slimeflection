@@ -1,0 +1,265 @@
+[gd_scene load_steps=25 format=3 uid="uid://bwplps4itk5l1"]
+
+[ext_resource type="PackedScene" uid="uid://bb1e51bf0kfc8" path="res://scenes/PlayerData/player.tscn" id="1_nmslc"]
+[ext_resource type="PackedScene" uid="uid://c8co2gn6fgxuy" path="res://scenes/mirror_point.tscn" id="2_xwbf3"]
+[ext_resource type="Script" uid="uid://b1qr2xngdksiv" path="res://scenes/worlds/Tutorial/hints.gd" id="3_ewcsd"]
+[ext_resource type="Theme" uid="uid://bdg2t4vau6s17" path="res://scenes/UI/TextTheme.tres" id="3_r81gl"]
+[ext_resource type="Texture2D" uid="uid://bhxhee51guscf" path="res://assets/KeycapToggle.png" id="4_dowag"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xwbf3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r81gl"]
+size = Vector2(633, 158)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6n16"]
+atlas = ExtResource("4_dowag")
+region = Rect2(0, 80, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2kfh"]
+atlas = ExtResource("4_dowag")
+region = Rect2(20, 80, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1bgoe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6n16")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2kfh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0miqw"]
+atlas = ExtResource("4_dowag")
+region = Rect2(0, 40, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rneay"]
+atlas = ExtResource("4_dowag")
+region = Rect2(20, 40, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xxhv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0miqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rneay")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dowag"]
+size = Vector2(522, 57)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewcsd"]
+atlas = ExtResource("4_dowag")
+region = Rect2(0, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v3na2"]
+atlas = ExtResource("4_dowag")
+region = Rect2(20, 20, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_67oga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewcsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v3na2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p2kfh"]
+size = Vector2(30, 239)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p6n16"]
+size = Vector2(82.5, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3na2"]
+size = Vector2(20, 290)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmslc"]
+size = Vector2(1148, 20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xwbf3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewcsd"]
+size = Vector2(122, 159)
+
+[sub_resource type="BoxMesh" id="BoxMesh_v3na2"]
+
+[node name="TutorialWorld" type="Node2D"]
+
+[node name="Player" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_nmslc")]
+position = Vector2(0, -105)
+mirroredCopy = NodePath("../Reflection")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Reflection" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_nmslc")]
+material = SubResource("CanvasItemMaterial_xwbf3")
+position = Vector2(-2, 150)
+is_reflection = true
+mirroredCopy = NodePath("../Player")
+
+[node name="Hints" type="Node" parent="."]
+script = ExtResource("3_ewcsd")
+
+[node name="ThisIsYou" type="Label" parent="Hints"]
+offset_left = -781.0
+offset_top = -141.0
+offset_right = -157.0
+offset_bottom = -77.0
+theme = ExtResource("3_r81gl")
+theme_override_font_sizes/font_size = 64
+text = "This slime is you -->"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hints/ThisIsYou"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hints/ThisIsYou/StaticBody2D"]
+position = Vector2(306.5, 72)
+shape = SubResource("RectangleShape2D_r81gl")
+
+[node name="TryToMove" type="Label" parent="Hints"]
+offset_left = 54.0
+offset_top = -574.0
+offset_right = 574.0
+offset_bottom = -443.0
+theme = ExtResource("3_r81gl")
+theme_override_font_sizes/font_size = 64
+text = "Try to move"
+
+[node name="KeyD" type="AnimatedSprite2D" parent="Hints/TryToMove"]
+texture_filter = 1
+position = Vector2(263, 169)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_1bgoe")
+autoplay = "default"
+frame_progress = 0.517111
+
+[node name="KeyA" type="AnimatedSprite2D" parent="Hints/TryToMove"]
+texture_filter = 1
+position = Vector2(143, 169)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_2xxhv")
+autoplay = "default"
+frame_progress = 0.409957
+
+[node name="ItsMirror" type="Label" parent="Hints"]
+offset_left = 1198.0
+offset_top = -64.0
+offset_right = 1718.0
+theme = ExtResource("3_r81gl")
+theme_override_font_sizes/font_size = 64
+text = "Look it's mirror!"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hints/ItsMirror"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hints/ItsMirror/StaticBody2D"]
+position = Vector2(260, 27.5)
+shape = SubResource("RectangleShape2D_dowag")
+
+[node name="YourNotAloneLabel" type="Label" parent="Hints"]
+offset_left = 428.0
+offset_top = 232.0
+offset_right = 1120.0
+offset_bottom = 296.0
+theme = ExtResource("3_r81gl")
+theme_override_font_sizes/font_size = 64
+text = "See? you're not alone"
+
+[node name="TryToJumpLabel" type="Label" parent="Hints"]
+offset_left = 1109.0
+offset_top = -598.0
+offset_right = 1665.0
+offset_bottom = -467.0
+theme = ExtResource("3_r81gl")
+text = "Oh, youre stuck?
+Then jump!"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Hints/TryToJumpLabel"]
+texture_filter = 1
+position = Vector2(272, 187)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_67oga")
+autoplay = "default"
+
+[node name="HelpYourFriendLabel" type="Label" parent="Hints"]
+offset_left = 1259.0
+offset_top = 374.0
+offset_right = 2287.0
+offset_bottom = 438.0
+theme = ExtResource("3_r81gl")
+text = "Wait! Can you help your friend?
+Just jump again"
+horizontal_alignment = 1
+
+[node name="YourNotAlone" type="Area2D" parent="Hints"]
+position = Vector2(651, -74)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hints/YourNotAlone"]
+position = Vector2(-30, -62.5)
+shape = SubResource("RectangleShape2D_p2kfh")
+
+[node name="TryToJump" type="Area2D" parent="Hints"]
+position = Vector2(1197, -65)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hints/TryToJump"]
+position = Vector2(-42.75, 26)
+shape = SubResource("RectangleShape2D_p6n16")
+
+[node name="HelpYourFriend" type="Area2D" parent="Hints"]
+position = Vector2(1660, 52)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hints/HelpYourFriend"]
+position = Vector2(0, 135)
+shape = SubResource("RectangleShape2D_v3na2")
+
+[node name="Obstracles" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Obstracles"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstracles/StaticBody2D"]
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_nmslc")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Obstracles/StaticBody2D"]
+position = Vector2(0.500061, -0.0999999)
+scale = Vector2(1137, 16.2)
+mesh = SubResource("BoxMesh_xwbf3")
+
+[node name="MirrorPoint" parent="Obstracles" instance=ExtResource("2_xwbf3")]
+texture_filter = 1
+position = Vector2(1606, 0)
+scale = Vector2(10.32, 1)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Obstracles"]
+position = Vector2(1715, 48)
+scale = Vector2(1, 0.44)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstracles/StaticBody2D2"]
+position = Vector2(64, -2.5)
+scale = Vector2(1, 0.994717)
+shape = SubResource("RectangleShape2D_ewcsd")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Obstracles/StaticBody2D2"]
+position = Vector2(63.9045, -2.49999)
+scale = Vector2(122.191, 158.16)
+mesh = SubResource("BoxMesh_v3na2")
+
+[connection signal="body_entered" from="Hints/YourNotAlone" to="Hints" method="_on_your_not_alone_body_entered"]
+[connection signal="body_entered" from="Hints/TryToJump" to="Hints" method="_on_try_to_jump_body_entered"]
+[connection signal="body_entered" from="Hints/HelpYourFriend" to="Hints" method="_on_help_your_friend_body_entered"]
