@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 var SPEED = 300
@@ -51,7 +52,7 @@ func _physics_process(delta: float) -> void:
 	velocity.x = direction * SPEED
 	
 	if reflect_colide.x != 0:
-		velocity.x = 0
+		velocity.bounce(reflect_colide)
 	
 	if is_in_jump:
 		$AnimatedSprite2D.play("jump")

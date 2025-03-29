@@ -1,25 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8co2gn6fgxuy"]
+[gd_scene load_steps=3 format=4 uid="uid://c8co2gn6fgxuy"]
 
+[ext_resource type="TileSet" uid="uid://b774thi0r10cy" path="res://assets/tileSet.tres" id="1_d42cg"]
 [ext_resource type="Texture2D" uid="uid://crtxnk4mg0od0" path="res://assets/White.png" id="2_d42cg"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_6agud"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ik7rr"]
-size = Vector2(20, 24.3902)
-
-[node name="MirrorPoint" type="StaticBody2D"]
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-scale = Vector2(200, 20)
-mesh = SubResource("BoxMesh_6agud")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(10, 0.82)
-shape = SubResource("RectangleShape2D_ik7rr")
+[node name="MirrorPoint" type="TileMapLayer"]
+texture_filter = 1
+tile_map_data = PackedByteArray("AAD5/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAA=")
+tile_set = ExtResource("1_d42cg")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(1, 980)
-scale = Vector2(200, 194)
+texture_filter = 1
+position = Vector2(0, 100)
+scale = Vector2(22.4, 2)
 blend_mode = 2
 texture = ExtResource("2_d42cg")
-texture_scale = 0.1

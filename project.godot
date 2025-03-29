@@ -15,6 +15,10 @@ run/main_scene="uid://bsodf8mtl5kjn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+BgMusic="*res://scenes/bg_music.tscn"
+
 [display]
 
 window/size/viewport_width=1280
@@ -50,6 +54,10 @@ drop={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":12,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[memory]
+
+limits/message_queue/max_size_mb=819200
 
 [rendering]
 

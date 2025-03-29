@@ -1,12 +1,16 @@
-[gd_scene load_steps=25 format=3 uid="uid://bwplps4itk5l1"]
+[gd_scene load_steps=40 format=4 uid="uid://bwplps4itk5l1"]
 
+[ext_resource type="Script" uid="uid://b14pe42ralatk" path="res://scenes/worlds/Tutorial/tutorial_world.gd" id="1_67oga"]
 [ext_resource type="PackedScene" uid="uid://bb1e51bf0kfc8" path="res://scenes/PlayerData/player.tscn" id="1_nmslc"]
-[ext_resource type="PackedScene" uid="uid://c8co2gn6fgxuy" path="res://scenes/mirror_point.tscn" id="2_xwbf3"]
+[ext_resource type="Script" uid="uid://w6y68ytp8s6p" path="res://scenes/worlds/Tutorial/camera_2d.gd" id="2_hypls"]
 [ext_resource type="Script" uid="uid://b1qr2xngdksiv" path="res://scenes/worlds/Tutorial/hints.gd" id="3_ewcsd"]
 [ext_resource type="Theme" uid="uid://bdg2t4vau6s17" path="res://scenes/UI/TextTheme.tres" id="3_r81gl"]
 [ext_resource type="Texture2D" uid="uid://bhxhee51guscf" path="res://assets/KeycapToggle.png" id="4_dowag"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xwbf3"]
+[ext_resource type="TileSet" uid="uid://b774thi0r10cy" path="res://assets/tileSet.tres" id="5_v3na2"]
+[ext_resource type="Texture2D" uid="uid://crtxnk4mg0od0" path="res://assets/White.png" id="7_67oga"]
+[ext_resource type="Shader" uid="uid://b33drkgmsa4bn" path="res://scenes/UI/sparkle.gdshader" id="8_xh5rj"]
+[ext_resource type="Texture2D" uid="uid://bmg1k86caldmb" path="res://icon.svg" id="9_v5kxh"]
+[ext_resource type="PackedScene" uid="uid://btkomugt3p8sp" path="res://scenes/UI/change_scene_button.tscn" id="11_ntfu3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r81gl"]
 size = Vector2(633, 158)
@@ -89,28 +93,98 @@ size = Vector2(82.5, 55)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3na2"]
 size = Vector2(20, 290)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmslc"]
-size = Vector2(1148, 20)
+[sub_resource type="AtlasTexture" id="AtlasTexture_67oga"]
+atlas = ExtResource("4_dowag")
+region = Rect2(0, 60, 20, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_xwbf3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xh5rj"]
+atlas = ExtResource("4_dowag")
+region = Rect2(20, 60, 20, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewcsd"]
-size = Vector2(122, 159)
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5kxh"]
+atlas = ExtResource("4_dowag")
+region = Rect2(0, 20, 20, 20)
 
-[sub_resource type="BoxMesh" id="BoxMesh_v3na2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_khuhp"]
+atlas = ExtResource("4_dowag")
+region = Rect2(20, 20, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hypls"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67oga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xh5rj")
+}],
+"loop": true,
+"name": &"S",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5kxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khuhp")
+}],
+"loop": true,
+"name": &"W",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ntfu3"]
+size = Vector2(182, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khuhp"]
+size = Vector2(295, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hypls"]
+size = Vector2(883, 141)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67oga"]
+size = Vector2(24, 327)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5kxh"]
+size = Vector2(19, 345)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xh5rj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xh5rj"]
+size = Vector2(632, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vp1m"]
+size = Vector2(30, 27)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_khuhp"]
+shader = ExtResource("8_xh5rj")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/alpha = 2.0
+shader_parameter/shney_disperse = 1.0
+shader_parameter/shney_speed = 0.5
+shader_parameter/twist_speed = 1.0
+shader_parameter/rota_speed = 1.0
+shader_parameter/curve_ci = 0.3
 
 [node name="TutorialWorld" type="Node2D"]
+script = ExtResource("1_67oga")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target1", "target2")]
+position = Vector2(0, -105)
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+script = ExtResource("2_hypls")
+target1 = NodePath("../Player")
+target2 = NodePath("../Reflection")
 
 [node name="Player" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_nmslc")]
 position = Vector2(0, -105)
+collision_layer = 3
 mirroredCopy = NodePath("../Reflection")
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.5, 0.5)
-
 [node name="Reflection" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_nmslc")]
-material = SubResource("CanvasItemMaterial_xwbf3")
-position = Vector2(-2, 150)
+position = Vector2(0, 131.655)
 is_reflection = true
 mirroredCopy = NodePath("../Player")
 
@@ -158,9 +232,10 @@ autoplay = "default"
 frame_progress = 0.409957
 
 [node name="ItsMirror" type="Label" parent="Hints"]
-offset_left = 1198.0
-offset_top = -64.0
-offset_right = 1718.0
+offset_left = 1042.0
+offset_top = -67.0
+offset_right = 1562.0
+offset_bottom = -3.0
 theme = ExtResource("3_r81gl")
 theme_override_font_sizes/font_size = 64
 text = "Look it's mirror!"
@@ -181,9 +256,9 @@ theme_override_font_sizes/font_size = 64
 text = "See? you're not alone"
 
 [node name="TryToJumpLabel" type="Label" parent="Hints"]
-offset_left = 1109.0
+offset_left = 932.0
 offset_top = -598.0
-offset_right = 1665.0
+offset_right = 1488.0
 offset_bottom = -467.0
 theme = ExtResource("3_r81gl")
 text = "Oh, youre stuck?
@@ -199,9 +274,9 @@ autoplay = "default"
 
 [node name="HelpYourFriendLabel" type="Label" parent="Hints"]
 offset_left = 1259.0
-offset_top = 374.0
+offset_top = 275.0
 offset_right = 2287.0
-offset_bottom = 438.0
+offset_bottom = 406.0
 theme = ExtResource("3_r81gl")
 text = "Wait! Can you help your friend?
 Just jump again"
@@ -215,51 +290,175 @@ position = Vector2(-30, -62.5)
 shape = SubResource("RectangleShape2D_p2kfh")
 
 [node name="TryToJump" type="Area2D" parent="Hints"]
-position = Vector2(1197, -65)
+position = Vector2(1035, -65)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hints/TryToJump"]
 position = Vector2(-42.75, 26)
 shape = SubResource("RectangleShape2D_p6n16")
 
 [node name="HelpYourFriend" type="Area2D" parent="Hints"]
-position = Vector2(1660, 52)
+position = Vector2(1528, 52)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hints/HelpYourFriend"]
 position = Vector2(0, 135)
 shape = SubResource("RectangleShape2D_v3na2")
 
+[node name="HighWallLabel" type="Label" parent="Hints"]
+offset_left = 1952.0
+offset_top = -499.0
+offset_right = 2504.0
+offset_bottom = -435.0
+theme = ExtResource("3_r81gl")
+text = "This wall is high..."
+
+[node name="HighWall2Label" type="Label" parent="Hints"]
+offset_left = 1812.0
+offset_top = -431.0
+offset_right = 2648.0
+offset_bottom = -367.0
+theme = ExtResource("3_r81gl")
+text = "Do jump and then Bounce"
+
+[node name="WKey" type="AnimatedSprite2D" parent="Hints/HighWall2Label"]
+texture_filter = 1
+position = Vector2(175, 123)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_hypls")
+animation = &"W"
+autoplay = "W"
+
+[node name="SKey" type="AnimatedSprite2D" parent="Hints/HighWall2Label"]
+texture_filter = 1
+position = Vector2(699, 113)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_hypls")
+animation = &"S"
+autoplay = "S"
+
+[node name="HighWall" type="Area2D" parent="Hints"]
+position = Vector2(2061, -70)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hints/HighWall"]
+position = Vector2(81, 0)
+shape = SubResource("RectangleShape2D_ntfu3")
+
+[node name="Spikes" type="Label" parent="Hints"]
+offset_left = 3142.0
+offset_top = -457.0
+offset_right = 4642.0
+offset_bottom = -393.0
+theme = ExtResource("3_r81gl")
+text = "Should I say that these spikes are dangerous?"
+
+[node name="Finish" type="Label" parent="Hints"]
+offset_left = 4427.0
+offset_top = -69.0
+offset_right = 5303.0
+offset_bottom = 464.0
+theme = ExtResource("3_r81gl")
+text = "This is it.
+
+
+
+
+
+Now you can finish tutorial
+Just jump into each other"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hints/Finish"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hints/Finish/StaticBody2D"]
+position = Vector2(137.5, 29)
+shape = SubResource("RectangleShape2D_khuhp")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hints/Finish/StaticBody2D"]
+position = Vector2(431.5, 462.5)
+shape = SubResource("RectangleShape2D_hypls")
+
 [node name="Obstracles" type="Node" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Obstracles"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstracles/StaticBody2D"]
-position = Vector2(-1, 0)
-shape = SubResource("RectangleShape2D_nmslc")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Obstracles/StaticBody2D"]
-position = Vector2(0.500061, -0.0999999)
-scale = Vector2(1137, 16.2)
-mesh = SubResource("BoxMesh_xwbf3")
-
-[node name="MirrorPoint" parent="Obstracles" instance=ExtResource("2_xwbf3")]
+[node name="TileMapLayer" type="TileMapLayer" parent="Obstracles"]
 texture_filter = 1
-position = Vector2(1606, 0)
-scale = Vector2(10.32, 1)
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAAEAAAAAAABAAEAAAADAAAAAAABAAEAAAACAAAAAAABAAEAAAABAAAAAAABAAEAAAAAAAAAAAABAAEAAAD//wAAAAABAAEAAAD+/wAAAAABAAEAAAD9/wAAAAABAAEAAAD8/wAAAAABAAEAAAD7/wAAAAABAAEAAAAFAAAAAAABAAEAAAAGAAAAAAABAAEAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAKAAAAAAABAAAAAAALAAAAAAABAAAAAAAMAAAAAAABAAAAAAANAAAAAAABAAAAAAAOAAAAAAABAAAAAAAPAAAAAAABAAAAAAAQAAAAAAABAAAAAAARAAAAAAABAAAAAAASAAAAAAABAAAAAAATAAAAAAABAAAAAAAUAAAAAAABAAAAAAAVAAAAAAABAAAAAAAWAAAAAAABAAAAAAAXAAAAAAABAAAAAAAYAAAAAAABAAAAAAAZAAAAAAABAAAAAAAaAAAAAAABAAAAAAAbAAAAAAABAAAAAAAcAAAAAAABAAAAAAAdAAAAAAABAAAAAAAeAAAAAAABAAAAAAAfAAAAAAABAAAAAAAgAAAAAAABAAAAAAAhAAAAAAABAAAAAAAiAAAAAAABAAAAAAAjAAAAAAABAAAAAAAkAAAAAAABAAAAAAAcAP//AAABAAEAAGAcAP7/AAABAAEAAGAdAP7/AAABAAEAAGAdAP//AAABAAEAAGAcAAEAAAABAAEAAGAcAAIAAAABAAEAAGAdAAIAAAABAAEAAGAdAAEAAAABAAEAAGAUAAEAAAABAAEAAFAlAAAAAAABAAEAAAAmAAAAAAABAAEAAAAnAAAAAAABAAEAAAAoAAAAAAABAAEAAAApAAAAAAABAAEAAAAqAAAAAAABAAEAAAArAAAAAAABAAEAADAtAP//AAABAAEAAAAwAP7/AAABAAEAAAArAAEAAAABAAEAAFArAAIAAAABAAEAAGArAAMAAAABAAEAAGAsAAMAAAABAAEAAAAtAAMAAAABAAEAAAAuAAMAAAABAAEAAAAvAAMAAAABAAEAAAAwAAMAAAABAAEAAAAxAAMAAAABAAEAAAAyAAMAAAABAAEAAAAzAAMAAAABAAEAAAA0AAMAAAABAAEAAFA0AAIAAAABAAEAAFA0AAEAAAABAAEAAFA0AAAAAAABAAEAAAAsAAIAAAAAAAEAAAAtAAIAAAAAAAEAAAAuAAIAAAAAAAEAAAAvAAIAAAAAAAEAAAAwAAIAAAAAAAEAAAAxAAIAAAAAAAEAAAAyAAIAAAAAAAEAAAAzAAIAAAAAAAEAAAA1AAAAAAABAAAAAAA2AAAAAAABAAAAAAA3AAAAAAABAAAAAAA4AAAAAAABAAAAAAA5AAAAAAABAAAAAAA6AAAAAAABAAAAAAA7AAAAAAABAAAAAAA8AAAAAAABAAAAAAA9AAAAAAABAAAAAAA+AAAAAAABAAAAAABAAAAAAAABAAAAAAA+AAEAAAABAAAAAABAAAEAAAABAAAAAAA+AP//AAABAAAAAABAAP//AAABAAAAAABAAP7/AAABAAAAAABAAP3/AAABAAAAAABAAAIAAAABAAAAAABAAAMAAAABAAAAAAA=")
+tile_set = ExtResource("5_v3na2")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Obstracles"]
-position = Vector2(1715, 48)
-scale = Vector2(1, 0.44)
+[node name="ReflectionMask" type="PointLight2D" parent="Obstracles/TileMapLayer"]
+texture_filter = 1
+position = Vector2(352.1, 81.75)
+scale = Vector2(48.02, 1.305)
+blend_mode = 2
+texture = ExtResource("7_67oga")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstracles/StaticBody2D2"]
-position = Vector2(64, -2.5)
-scale = Vector2(1, 0.994717)
-shape = SubResource("RectangleShape2D_ewcsd")
+[node name="ReflectionMask2" type="PointLight2D" parent="Obstracles/TileMapLayer"]
+texture_filter = 1
+position = Vector2(944.5, 73.7054)
+scale = Vector2(19.14, 1.15011)
+blend_mode = 2
+texture = ExtResource("7_67oga")
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Obstracles/StaticBody2D2"]
-position = Vector2(63.9045, -2.49999)
-scale = Vector2(122.191, 158.16)
-mesh = SubResource("BoxMesh_v3na2")
+[node name="DisableReflectionArea" type="Area2D" parent="."]
+position = Vector2(3413, 102)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DisableReflectionArea"]
+position = Vector2(0, 120.5)
+shape = SubResource("RectangleShape2D_67oga")
+
+[node name="EnableReflectionArea2" type="Area2D" parent="."]
+position = Vector2(4277, -343)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnableReflectionArea2"]
+position = Vector2(2.5, 160.5)
+shape = SubResource("RectangleShape2D_v5kxh")
+
+[node name="RestartArea" type="Area2D" parent="."]
+position = Vector2(0, 743)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RestartArea"]
+shape = SubResource("WorldBoundaryShape2D_xh5rj")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RestartArea"]
+position = Vector2(3839, -546)
+shape = SubResource("RectangleShape2D_xh5rj")
+
+[node name="FinishArea" type="Area2D" parent="."]
+position = Vector2(5081, 39)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishArea"]
+shape = SubResource("RectangleShape2D_4vp1m")
+
+[node name="Sprite2D" type="Sprite2D" parent="FinishArea"]
+material = SubResource("ShaderMaterial_khuhp")
+texture = ExtResource("9_v5kxh")
+
+[node name="Results" type="VBoxContainer" parent="."]
+offset_left = 5255.0
+offset_top = -37.0
+offset_right = 5703.0
+offset_bottom = 103.0
+
+[node name="Label" type="Label" parent="Results"]
+layout_mode = 2
+theme = ExtResource("3_r81gl")
+text = "Your time:
+(0) sec"
+horizontal_alignment = 1
+
+[node name="ChangeSceneButton" parent="Results" instance=ExtResource("11_ntfu3")]
+layout_mode = 2
+text = "Go to menu"
+new_scene_file_path = "res://scenes/UI/game_menu.tscn"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [connection signal="body_entered" from="Hints/YourNotAlone" to="Hints" method="_on_your_not_alone_body_entered"]
 [connection signal="body_entered" from="Hints/TryToJump" to="Hints" method="_on_try_to_jump_body_entered"]
 [connection signal="body_entered" from="Hints/HelpYourFriend" to="Hints" method="_on_help_your_friend_body_entered"]
+[connection signal="body_entered" from="Hints/HighWall" to="Hints" method="_on_high_wall_body_entered"]
+[connection signal="body_entered" from="DisableReflectionArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="EnableReflectionArea2" to="." method="_on_enable_reflection_area_2_body_entered"]
+[connection signal="body_entered" from="RestartArea" to="." method="_on_restart_area_body_entered"]
+[connection signal="body_entered" from="FinishArea" to="." method="_on_finish_area_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
