@@ -101,6 +101,7 @@ rotation = 3.14159
 polygon = PackedVector2Array(-38, 0, 0, 80, 38, 0)
 
 [node name="EnableReflectionArea2" parent="." node_paths=PackedStringArray("reflection") instance=ExtResource("6_6j6ji")]
+position = Vector2(0, -61)
 reflection = NodePath("../Reflection")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnableReflectionArea2"]
@@ -112,6 +113,7 @@ position = Vector2(0, -609)
 shape = SubResource("SegmentShape2D_hqtx3")
 
 [node name="CameraMoveArea" type="Area2D" parent="."]
+position = Vector2(0, -61)
 script = ExtResource("7_l1hwq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CameraMoveArea"]
