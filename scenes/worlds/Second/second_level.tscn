@@ -1,0 +1,139 @@
+[gd_scene load_steps=16 format=4 uid="uid://jrccc2y41ksc"]
+
+[ext_resource type="PackedScene" uid="uid://bb1e51bf0kfc8" path="res://scenes/PlayerData/player.tscn" id="1_w6w2v"]
+[ext_resource type="TileSet" uid="uid://b774thi0r10cy" path="res://assets/tileSet.tres" id="2_6j6ji"]
+[ext_resource type="Texture2D" uid="uid://crtxnk4mg0od0" path="res://assets/White.png" id="3_l1hwq"]
+[ext_resource type="PackedScene" uid="uid://bporm4yk51bu3" path="res://scenes/worlds/Components/finish_area.tscn" id="4_615c1"]
+[ext_resource type="PackedScene" uid="uid://b4cni5qek1p7v" path="res://scenes/worlds/Components/restart_area.tscn" id="5_hqtx3"]
+[ext_resource type="PackedScene" uid="uid://dut41mogqufse" path="res://scenes/worlds/Components/toggle_reflection_area.tscn" id="6_6j6ji"]
+[ext_resource type="PackedScene" uid="uid://cy3xtjx7kjmc6" path="res://scenes/UI/esc_menu.tscn" id="6_v2yaq"]
+[ext_resource type="Script" uid="uid://ceg8si08gwvge" path="res://scenes/worlds/Second/camera_move_area.gd" id="7_l1hwq"]
+[ext_resource type="PackedScene" uid="uid://ced0uyxcoevbs" path="res://scenes/UI/level_results.tscn" id="7_tgjwl"]
+[ext_resource type="Theme" uid="uid://bdg2t4vau6s17" path="res://scenes/UI/TextTheme.tres" id="10_615c1"]
+[ext_resource type="PackedScene" uid="uid://bjo5l22exw3kh" path="res://scenes/worlds/Third/third_level.tscn" id="10_hqtx3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_615c1"]
+size = Vector2(66, 223)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_615c1"]
+a = Vector2(-305, 29)
+b = Vector2(377, 30)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_hqtx3"]
+a = Vector2(2, -79)
+b = Vector2(-89, -78)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6j6ji"]
+a = Vector2(-326, -10)
+b = Vector2(362, -12)
+
+[node name="SecondLevel" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(677, -364)
+zoom = Vector2(0.7, 0.7)
+
+[node name="Player" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_w6w2v")]
+position = Vector2(-42, -728)
+mirroredCopy = NodePath("../Reflection")
+
+[node name="Reflection" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_w6w2v")]
+position = Vector2(-40, 1055)
+collision_layer = 3
+collision_mask = 3
+is_reflection = true
+mirroredCopy = NodePath("../Player")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAD///v/AAABAAEAAAAAAPv/AAABAAEAAAAMAPv/AAABAAEAAFANAPv/AAABAAEAADAOAPv/AAABAAAAAAAPAPv/AAABAAAAAAAQAPv/AAABAAAAAAD///X/AAABAAEAADAAAPX/AAABAAEAADABAPX/AAABAAEAADACAPX/AAABAAEAADADAPX/AAABAAEAADAEAPX/AAABAAEAADAFAPX/AAABAAEAADAGAPX/AAABAAEAADAHAPX/AAABAAEAADAIAPX/AAABAAEAADAJAPX/AAABAAEAADAKAPX/AAABAAEAADALAPX/AAABAAEAADAMAPX/AAABAAEAADANAPX/AAABAAEAADAOAPX/AAABAAEAADAPAPX/AAABAAEAADAQAPX/AAABAAEAADARAPX/AAABAAEAADASAPX/AAABAAEAADACAAEAAAABAAEAAFAMAAEAAAABAAEAAFD+//v/AAABAAEAAAD9//b/AAABAAEAAFD9//f/AAABAAEAAFD9//j/AAABAAEAAFD9//n/AAABAAEAAFD9//r/AAABAAEAAFD9//v/AAABAAEAAFD9//z/AAABAAEAAFD9//3/AAABAAEAAFD9//7/AAABAAEAAFD9////AAABAAEAAFD9/wAAAAABAAEAAFD9/wEAAAABAAEAAFD9//X/AAABAAEAADD+//X/AAABAAEAADATAPX/AAABAAEAAGATAPb/AAABAAEAAGATAPf/AAABAAEAAGATAPj/AAABAAEAAGATAAEAAAABAAEAAGATAAAAAAABAAEAAGATAP//AAABAAEAAGATAP7/AAABAAEAAGATAP3/AAABAAAAAAATAPz/AAABAAAAAAATAPv/AAABAAAAAAATAPr/AAABAAAAAAATAPn/AAABAAAAAAARAPv/AAABAAAAAAARAPr/AAABAAAAAAARAPz/AAABAAAAAAAMAPz/AAABAAEAAFAMAP3/AAABAAEAAFAMAAAAAAABAAEAAFABAPv/AAABAAEAADACAPv/AAABAAEAAGACAP//AAABAAEAAGACAAAAAAABAAEAAGACAAIAAAABAAEAAGAMAAIAAAABAAEAAFAMAAMAAAABAAEAAFAMAAQAAAABAAEAAFADAP//AAABAAEAAAAEAP//AAABAAEAAAAFAPb/AAABAAEAAFAFAPf/AAABAAEAAFAFAPj/AAAAAAEAADALAPz/AAABAAEAAAALAP3/AAAAAAEAADADAAAAAAAAAAEAADAJAPb/AAAAAAEAADACAPz/AAABAAEAAFACAP3/AAABAAEAAFACAP7/AAABAAEAAFD9/w8AAAABAAEAAFD9/w4AAAABAAEAAFD9/w0AAAABAAEAAFD9/wwAAAABAAEAAFD9/wsAAAABAAEAAFD9/woAAAABAAEAAFD9/wkAAAABAAEAAFD9/wgAAAABAAEAAFD9/wcAAAABAAEAAFD9/wYAAAABAAEAAFD9/wUAAAABAAEAAFD9/wQAAAABAAEAAFD9/wMAAAABAAEAAFD9/wIAAAABAAEAAFATAA8AAAABAAEAAFATAA4AAAABAAEAAFATAA0AAAABAAAAAAATAAwAAAABAAAAAAATAAsAAAABAAAAAAATAAoAAAABAAAAAAATAAkAAAABAAAAAAATAAgAAAABAAEAAFATAAcAAAABAAEAAFATAAYAAAABAAEAAFATAAUAAAABAAEAAFATAAQAAAABAAEAAFATAAMAAAABAAEAAFATAAIAAAABAAEAAFACAAMAAAABAAEAAFAMAP//AAABAAEAAFAMAP7/AAABAAEAAFD+/wsAAAABAAAAAAD//wsAAAABAAAAAAAAAAsAAAABAAAAAAABAAsAAAABAAAAAAACAAsAAAABAAAAAAADAAsAAAABAAAAAAAEAAsAAAABAAAAAAAFAAsAAAABAAAAAAAGAAsAAAABAAAAAAAHAAsAAAABAAAAAAAIAAsAAAABAAAAAAAJAAsAAAABAAAAAAAKAAsAAAABAAAAAAALAAsAAAABAAAAAAAMAAsAAAABAAAAAAANAAsAAAABAAAAAAAOAAsAAAABAAAAAAAPAAsAAAABAAAAAAARAAoAAAABAAAAAAARAAsAAAABAAAAAAARAAwAAAABAAAAAAAQAAsAAAABAAAAAAAMAAkAAAABAAEAAFAMAAoAAAABAAEAAFAMAAgAAAABAAEAAFAMAAcAAAABAAEAAFALAAAAAAABAAEAAAACAAoAAAABAAEAADAAAAgAAAABAAEAADD+/wgAAAABAAEAADD//wgAAAABAAEAADABAAoAAAAAAAEAAAALAAoAAAAAAAEAAAAEAAcAAAABAAEAAAACAAQAAAABAAEAAFALAAMAAAAAAAEAAGALAAIAAAAAAAEAAGD+/w8AAAABAAEAAAD//w8AAAABAAEAAAAAAA8AAAABAAEAAAABAA8AAAABAAEAAAACAA8AAAABAAEAAAADAA8AAAABAAEAAAAEAA8AAAABAAEAAAAFAA8AAAABAAEAAAAGAA8AAAABAAEAAAAHAA8AAAABAAEAAAAIAA8AAAABAAEAAAAJAA8AAAABAAEAAAAKAA8AAAABAAEAAAALAA8AAAABAAEAAAAMAA8AAAABAAEAAAANAA8AAAABAAEAAAAOAA8AAAABAAEAAAAPAA8AAAABAAEAAAAQAA8AAAABAAEAAAARAA8AAAABAAEAAAASAA8AAAABAAEAAAAIAAUAAAABAAEAAAAMAAwAAAABAAEAAFALAAEAAAAAAAEAAGABAAwAAAABAAEAAFAFAAwAAAABAAEAAFAFAA0AAAABAAEAAFA=")
+tile_set = ExtResource("2_6j6ji")
+
+[node name="PointLight2D" type="PointLight2D" parent="TileMapLayer"]
+position = Vector2(263.5, -32)
+scale = Vector2(7.9, 0.96)
+blend_mode = 2
+texture = ExtResource("3_l1hwq")
+
+[node name="PointLight2D2" type="PointLight2D" parent="TileMapLayer"]
+position = Vector2(136.1, 207.7)
+scale = Vector2(33.54, 0.634)
+blend_mode = 2
+texture = ExtResource("3_l1hwq")
+
+[node name="FinishArea" parent="." instance=ExtResource("4_615c1")]
+position = Vector2(1483, -358)
+
+[node name="FinishArea2" parent="." instance=ExtResource("4_615c1")]
+position = Vector2(1483, 918)
+
+[node name="RestartArea" parent="." instance=ExtResource("5_hqtx3")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RestartArea"]
+position = Vector2(923, 200.5)
+shape = SubResource("RectangleShape2D_615c1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RestartArea"]
+position = Vector2(919, -238)
+polygon = PackedVector2Array(-38, 0, 0, 80, 38, 0)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="RestartArea"]
+position = Vector2(760, -797)
+polygon = PackedVector2Array(-38, 0, 0, 80, 38, 0)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="RestartArea"]
+position = Vector2(441, -639)
+polygon = PackedVector2Array(-35, 0, 0, 80, 35, 0)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="RestartArea"]
+position = Vector2(280, 2)
+polygon = PackedVector2Array(-38, 0, 0, 80, 38, 0)
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="RestartArea"]
+position = Vector2(120, 879)
+rotation = 3.14159
+polygon = PackedVector2Array(-38, 0, 0, 80, 38, 0)
+
+[node name="CollisionPolygon2D6" type="CollisionPolygon2D" parent="RestartArea"]
+position = Vector2(920, 879)
+rotation = 3.14159
+polygon = PackedVector2Array(-38, 0, 0, 80, 38, 0)
+
+[node name="EnableReflectionArea2" parent="." node_paths=PackedStringArray("reflection") instance=ExtResource("6_6j6ji")]
+reflection = NodePath("../Reflection")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnableReflectionArea2"]
+position = Vector2(559, 111)
+shape = SubResource("SegmentShape2D_615c1")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EnableReflectionArea2"]
+position = Vector2(0, -609)
+shape = SubResource("SegmentShape2D_hqtx3")
+
+[node name="CameraMoveArea" type="Area2D" parent="."]
+script = ExtResource("7_l1hwq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraMoveArea"]
+position = Vector2(580, 158)
+shape = SubResource("SegmentShape2D_6j6ji")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EscMenu" parent="CanvasLayer" instance=ExtResource("6_v2yaq")]
+metadata/_edit_use_anchors_ = true
+
+[node name="Results" parent="CanvasLayer" instance=ExtResource("7_tgjwl")]
+visible = false
+new_scene = ExtResource("10_hqtx3")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 461.0
+offset_top = -672.0
+offset_right = 1101.0
+offset_bottom = -541.0
+theme = ExtResource("10_615c1")
+text = "This is impossible"
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="CameraMoveArea" to="CameraMoveArea" method="_on_body_entered"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dut41mogqufse"]
+
+[ext_resource type="Script" uid="uid://dwep74uhghwak" path="res://scenes/worlds/Components/Scripts/toggle_reflection_area.gd" id="1_niu8f"]
+
+[node name="EnableReflectionArea2" type="Area2D"]
+collision_layer = 15
+script = ExtResource("1_niu8f")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

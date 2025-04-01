@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 var SPEED = 300
-var JUMP_SPEED = -400
+var JUMP_SPEED = -450
 
 @export var is_reflection: bool = false
 @export var mirroredCopy: CharacterBody2D
@@ -21,11 +21,6 @@ func _ready():
 		JUMP_SPEED = -JUMP_SPEED
 		gravity = -gravity
 		up_direction = Vector2(0,1)
-		var distance = mirroredCopy.global_position - global_position
-		global_position = Vector2(
-			mirroredCopy.global_position.x,
-			global_position.y - distance.y
-		)
 
 func _physics_process(delta: float) -> void:
 	if !is_on_floor():
@@ -41,6 +36,8 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_SPEED
+		if !is_reflection:
+			$JumpAudio.play()
 		is_in_jump = true
 	
 	if Input.is_action_just_pressed("drop") and !is_on_floor():

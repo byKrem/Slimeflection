@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxvfrcbgbeimp"]
+
+[ext_resource type="Script" uid="uid://dcgeie8ygpuwl" path="res://scenes/UI/music_volume.gd" id="1_fsaxj"]
+[ext_resource type="Theme" uid="uid://bdg2t4vau6s17" path="res://scenes/UI/TextTheme.tres" id="2_62fru"]
+
+[node name="MusicVolume" type="HBoxContainer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -581.0
+offset_top = -93.0
+offset_right = -26.0
+offset_bottom = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("1_fsaxj")
+bus_name = "Music"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_62fru")
+theme_override_font_sizes/font_size = 32
+text = "BusName"
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.001
+value = 0.6
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4cni5qek1p7v"]
+
+[ext_resource type="Script" uid="uid://bmr2haclobfjp" path="res://scenes/worlds/Components/Scripts/restart_area.gd" id="1_ty4c3"]
+
+[node name="RestartArea" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_ty4c3")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -3,6 +3,7 @@
 [ext_resource type="AudioStream" uid="uid://dsaambcbmtvuu" path="res://assets/8bit.mp3" id="1_f6gl3"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_f6gl3")
 autoplay = true
 bus = &"Music"

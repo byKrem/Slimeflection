@@ -2,15 +2,18 @@
 
 [ext_resource type="Script" uid="uid://b14pe42ralatk" path="res://scenes/worlds/Tutorial/tutorial_world.gd" id="1_67oga"]
 [ext_resource type="PackedScene" uid="uid://bb1e51bf0kfc8" path="res://scenes/PlayerData/player.tscn" id="1_nmslc"]
-[ext_resource type="Script" uid="uid://w6y68ytp8s6p" path="res://scenes/worlds/Tutorial/camera_2d.gd" id="2_hypls"]
+[ext_resource type="Script" uid="uid://w6y68ytp8s6p" path="res://scenes/worlds/Components/Scripts/camera_2d.gd" id="2_hypls"]
 [ext_resource type="Script" uid="uid://b1qr2xngdksiv" path="res://scenes/worlds/Tutorial/hints.gd" id="3_ewcsd"]
 [ext_resource type="Theme" uid="uid://bdg2t4vau6s17" path="res://scenes/UI/TextTheme.tres" id="3_r81gl"]
 [ext_resource type="Texture2D" uid="uid://bhxhee51guscf" path="res://assets/KeycapToggle.png" id="4_dowag"]
 [ext_resource type="TileSet" uid="uid://b774thi0r10cy" path="res://assets/tileSet.tres" id="5_v3na2"]
 [ext_resource type="Texture2D" uid="uid://crtxnk4mg0od0" path="res://assets/White.png" id="7_67oga"]
-[ext_resource type="Shader" uid="uid://b33drkgmsa4bn" path="res://scenes/UI/sparkle.gdshader" id="8_xh5rj"]
-[ext_resource type="Texture2D" uid="uid://bmg1k86caldmb" path="res://icon.svg" id="9_v5kxh"]
-[ext_resource type="PackedScene" uid="uid://btkomugt3p8sp" path="res://scenes/UI/change_scene_button.tscn" id="11_ntfu3"]
+[ext_resource type="PackedScene" uid="uid://dut41mogqufse" path="res://scenes/worlds/Components/toggle_reflection_area.tscn" id="9_4vp1m"]
+[ext_resource type="PackedScene" uid="uid://bporm4yk51bu3" path="res://scenes/worlds/Components/finish_area.tscn" id="9_hypls"]
+[ext_resource type="PackedScene" uid="uid://b4cni5qek1p7v" path="res://scenes/worlds/Components/restart_area.tscn" id="9_ntfu3"]
+[ext_resource type="PackedScene" uid="uid://ced0uyxcoevbs" path="res://scenes/UI/level_results.tscn" id="12_4vp1m"]
+[ext_resource type="PackedScene" uid="uid://cy3xtjx7kjmc6" path="res://scenes/UI/esc_menu.tscn" id="12_ntfu3"]
+[ext_resource type="PackedScene" uid="uid://db6i4aumtc2tx" path="res://scenes/worlds/First/first_level.tscn" id="14_fpo5l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r81gl"]
 size = Vector2(633, 158)
@@ -143,32 +146,17 @@ size = Vector2(295, 78)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hypls"]
 size = Vector2(883, 141)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_67oga"]
-size = Vector2(24, 327)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5kxh"]
-size = Vector2(19, 345)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpo5l"]
+size = Vector2(2, 152)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xh5rj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xh5rj"]
 size = Vector2(632, 80)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vp1m"]
-size = Vector2(30, 27)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_khuhp"]
-shader = ExtResource("8_xh5rj")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/alpha = 2.0
-shader_parameter/shney_disperse = 1.0
-shader_parameter/shney_speed = 0.5
-shader_parameter/twist_speed = 1.0
-shader_parameter/rota_speed = 1.0
-shader_parameter/curve_ci = 0.3
-
-[node name="TutorialWorld" type="Node2D"]
+[node name="TutorialWorld" type="Node2D" node_paths=PackedStringArray("reflection")]
 script = ExtResource("1_67oga")
+reflection = NodePath("Reflection")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target1", "target2")]
 position = Vector2(0, -105)
@@ -185,6 +173,7 @@ mirroredCopy = NodePath("../Reflection")
 
 [node name="Reflection" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_nmslc")]
 position = Vector2(0, 131.655)
+collision_layer = 2
 is_reflection = true
 mirroredCopy = NodePath("../Player")
 
@@ -380,7 +369,7 @@ shape = SubResource("RectangleShape2D_hypls")
 [node name="TileMapLayer" type="TileMapLayer" parent="Obstracles"]
 texture_filter = 1
 scale = Vector2(5, 5)
-tile_map_data = PackedByteArray("AAAEAAAAAAABAAEAAAADAAAAAAABAAEAAAACAAAAAAABAAEAAAABAAAAAAABAAEAAAAAAAAAAAABAAEAAAD//wAAAAABAAEAAAD+/wAAAAABAAEAAAD9/wAAAAABAAEAAAD8/wAAAAABAAEAAAD7/wAAAAABAAEAAAAFAAAAAAABAAEAAAAGAAAAAAABAAEAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAKAAAAAAABAAAAAAALAAAAAAABAAAAAAAMAAAAAAABAAAAAAANAAAAAAABAAAAAAAOAAAAAAABAAAAAAAPAAAAAAABAAAAAAAQAAAAAAABAAAAAAARAAAAAAABAAAAAAASAAAAAAABAAAAAAATAAAAAAABAAAAAAAUAAAAAAABAAAAAAAVAAAAAAABAAAAAAAWAAAAAAABAAAAAAAXAAAAAAABAAAAAAAYAAAAAAABAAAAAAAZAAAAAAABAAAAAAAaAAAAAAABAAAAAAAbAAAAAAABAAAAAAAcAAAAAAABAAAAAAAdAAAAAAABAAAAAAAeAAAAAAABAAAAAAAfAAAAAAABAAAAAAAgAAAAAAABAAAAAAAhAAAAAAABAAAAAAAiAAAAAAABAAAAAAAjAAAAAAABAAAAAAAkAAAAAAABAAAAAAAcAP//AAABAAEAAGAcAP7/AAABAAEAAGAdAP7/AAABAAEAAGAdAP//AAABAAEAAGAcAAEAAAABAAEAAGAcAAIAAAABAAEAAGAdAAIAAAABAAEAAGAdAAEAAAABAAEAAGAUAAEAAAABAAEAAFAlAAAAAAABAAEAAAAmAAAAAAABAAEAAAAnAAAAAAABAAEAAAAoAAAAAAABAAEAAAApAAAAAAABAAEAAAAqAAAAAAABAAEAAAArAAAAAAABAAEAADAtAP//AAABAAEAAAAwAP7/AAABAAEAAAArAAEAAAABAAEAAFArAAIAAAABAAEAAGArAAMAAAABAAEAAGAsAAMAAAABAAEAAAAtAAMAAAABAAEAAAAuAAMAAAABAAEAAAAvAAMAAAABAAEAAAAwAAMAAAABAAEAAAAxAAMAAAABAAEAAAAyAAMAAAABAAEAAAAzAAMAAAABAAEAAAA0AAMAAAABAAEAAFA0AAIAAAABAAEAAFA0AAEAAAABAAEAAFA0AAAAAAABAAEAAAAsAAIAAAAAAAEAAAAtAAIAAAAAAAEAAAAuAAIAAAAAAAEAAAAvAAIAAAAAAAEAAAAwAAIAAAAAAAEAAAAxAAIAAAAAAAEAAAAyAAIAAAAAAAEAAAAzAAIAAAAAAAEAAAA1AAAAAAABAAAAAAA2AAAAAAABAAAAAAA3AAAAAAABAAAAAAA4AAAAAAABAAAAAAA5AAAAAAABAAAAAAA6AAAAAAABAAAAAAA7AAAAAAABAAAAAAA8AAAAAAABAAAAAAA9AAAAAAABAAAAAAA+AAAAAAABAAAAAABAAAAAAAABAAAAAAA+AAEAAAABAAAAAABAAAEAAAABAAAAAAA+AP//AAABAAAAAABAAP//AAABAAAAAABAAP7/AAABAAAAAABAAP3/AAABAAAAAABAAAIAAAABAAAAAABAAAMAAAABAAAAAAA=")
+tile_map_data = PackedByteArray("AAAEAAAAAAABAAEAAAADAAAAAAABAAEAAAACAAAAAAABAAEAAAABAAAAAAABAAEAAAAAAAAAAAABAAEAAAD//wAAAAABAAEAAAD+/wAAAAABAAEAAAD9/wAAAAABAAEAAAD8/wAAAAABAAEAAAD7/wAAAAABAAEAAAAFAAAAAAABAAEAAAAGAAAAAAABAAEAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAKAAAAAAABAAAAAAALAAAAAAABAAAAAAAMAAAAAAABAAAAAAANAAAAAAABAAAAAAAOAAAAAAABAAAAAAAPAAAAAAABAAAAAAAQAAAAAAABAAAAAAARAAAAAAABAAAAAAASAAAAAAABAAAAAAATAAAAAAABAAAAAAAUAAAAAAABAAAAAAAVAAAAAAABAAAAAAAWAAAAAAABAAAAAAAXAAAAAAABAAAAAAAYAAAAAAABAAAAAAAZAAAAAAABAAAAAAAaAAAAAAABAAAAAAAbAAAAAAABAAAAAAAcAAAAAAABAAAAAAAdAAAAAAABAAAAAAAeAAAAAAABAAAAAAAfAAAAAAABAAAAAAAgAAAAAAABAAAAAAAhAAAAAAABAAAAAAAiAAAAAAABAAAAAAAjAAAAAAABAAAAAAAkAAAAAAABAAAAAAAcAP//AAABAAEAAGAcAP7/AAABAAEAAGAdAP7/AAABAAEAAGAdAP//AAABAAEAAGAcAAEAAAABAAEAAGAcAAIAAAABAAEAAGAdAAIAAAABAAEAAGAdAAEAAAABAAEAAGAUAAEAAAABAAEAAFAlAAAAAAABAAEAAAAmAAAAAAABAAEAAAAnAAAAAAABAAEAAAAoAAAAAAABAAEAAAApAAAAAAABAAEAAAAqAAAAAAABAAEAAAArAAAAAAABAAEAADAtAP//AAABAAEAAAAwAP7/AAABAAEAAAArAAEAAAABAAEAAFArAAIAAAABAAEAAGArAAMAAAABAAEAAGAsAAMAAAABAAEAAAAtAAMAAAABAAEAAAAuAAMAAAABAAEAAAAvAAMAAAABAAEAAAAwAAMAAAABAAEAAAAxAAMAAAABAAEAAAAyAAMAAAABAAEAAAAzAAMAAAABAAEAAAA0AAMAAAABAAEAAFA0AAIAAAABAAEAAFA0AAEAAAABAAEAAFA0AAAAAAABAAEAAAAsAAIAAAAAAAEAAAAtAAIAAAAAAAEAAAAuAAIAAAAAAAEAAAAvAAIAAAAAAAEAAAAwAAIAAAAAAAEAAAAxAAIAAAAAAAEAAAAyAAIAAAAAAAEAAAAzAAIAAAAAAAEAAAA1AAAAAAABAAEAAAA2AAAAAAABAAAAAAA3AAAAAAABAAAAAAA4AAAAAAABAAAAAAA5AAAAAAABAAAAAAA6AAAAAAABAAAAAAA7AAAAAAABAAAAAAA8AAAAAAABAAAAAAA9AAAAAAABAAAAAAA+AAAAAAABAAAAAABAAAAAAAABAAAAAAA+AAEAAAABAAAAAABAAAEAAAABAAAAAAA+AP//AAABAAAAAABAAP//AAABAAAAAABAAP7/AAABAAAAAABAAP3/AAABAAAAAABAAAIAAAABAAAAAABAAAMAAAABAAAAAAD6/wAAAAABAAEAAAA=")
 tile_set = ExtResource("5_v3na2")
 
 [node name="ReflectionMask" type="PointLight2D" parent="Obstracles/TileMapLayer"]
@@ -392,28 +381,30 @@ texture = ExtResource("7_67oga")
 
 [node name="ReflectionMask2" type="PointLight2D" parent="Obstracles/TileMapLayer"]
 texture_filter = 1
-position = Vector2(944.5, 73.7054)
-scale = Vector2(19.14, 1.15011)
+position = Vector2(951.9, 68.0999)
+scale = Vector2(17.66, 1.038)
 blend_mode = 2
 texture = ExtResource("7_67oga")
+height = 156.0
 
-[node name="DisableReflectionArea" type="Area2D" parent="."]
-position = Vector2(3413, 102)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DisableReflectionArea"]
-position = Vector2(0, 120.5)
-shape = SubResource("RectangleShape2D_67oga")
-
-[node name="EnableReflectionArea2" type="Area2D" parent="."]
+[node name="EnableReflectionArea2" parent="." node_paths=PackedStringArray("reflection") instance=ExtResource("9_4vp1m")]
 position = Vector2(4277, -343)
+reflection = NodePath("../Reflection")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnableReflectionArea2"]
-position = Vector2(2.5, 160.5)
-shape = SubResource("RectangleShape2D_v5kxh")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EnableReflectionArea2"]
+position = Vector2(-1297.25, 246)
+shape = SubResource("RectangleShape2D_fpo5l")
 
-[node name="RestartArea" type="Area2D" parent="."]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="EnableReflectionArea2"]
+position = Vector2(-4632, 112)
+shape = SubResource("RectangleShape2D_fpo5l")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="EnableReflectionArea2"]
+position = Vector2(10, 265)
+shape = SubResource("RectangleShape2D_fpo5l")
+
+[node name="RestartArea" parent="." instance=ExtResource("9_ntfu3")]
 position = Vector2(0, 743)
-collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RestartArea"]
 shape = SubResource("WorldBoundaryShape2D_xh5rj")
@@ -422,43 +413,22 @@ shape = SubResource("WorldBoundaryShape2D_xh5rj")
 position = Vector2(3839, -546)
 shape = SubResource("RectangleShape2D_xh5rj")
 
-[node name="FinishArea" type="Area2D" parent="."]
+[node name="FinishArea" parent="." instance=ExtResource("9_hypls")]
 position = Vector2(5081, 39)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishArea"]
-shape = SubResource("RectangleShape2D_4vp1m")
-
-[node name="Sprite2D" type="Sprite2D" parent="FinishArea"]
-material = SubResource("ShaderMaterial_khuhp")
-texture = ExtResource("9_v5kxh")
-
-[node name="Results" type="VBoxContainer" parent="."]
-offset_left = 5255.0
-offset_top = -37.0
-offset_right = 5703.0
-offset_bottom = 103.0
-
-[node name="Label" type="Label" parent="Results"]
-layout_mode = 2
-theme = ExtResource("3_r81gl")
-text = "Your time:
-(0) sec"
-horizontal_alignment = 1
-
-[node name="ChangeSceneButton" parent="Results" instance=ExtResource("11_ntfu3")]
-layout_mode = 2
-text = "Go to menu"
-new_scene_file_path = "res://scenes/UI/game_menu.tscn"
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("12_ntfu3")]
+
+[node name="Results" parent="CanvasLayer" instance=ExtResource("12_4vp1m")]
+visible = false
+new_scene = ExtResource("14_fpo5l")
 
 [connection signal="body_entered" from="Hints/YourNotAlone" to="Hints" method="_on_your_not_alone_body_entered"]
 [connection signal="body_entered" from="Hints/TryToJump" to="Hints" method="_on_try_to_jump_body_entered"]
 [connection signal="body_entered" from="Hints/HelpYourFriend" to="Hints" method="_on_help_your_friend_body_entered"]
 [connection signal="body_entered" from="Hints/HighWall" to="Hints" method="_on_high_wall_body_entered"]
-[connection signal="body_entered" from="DisableReflectionArea" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="EnableReflectionArea2" to="." method="_on_enable_reflection_area_2_body_entered"]
-[connection signal="body_entered" from="RestartArea" to="." method="_on_restart_area_body_entered"]
-[connection signal="body_entered" from="FinishArea" to="." method="_on_finish_area_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

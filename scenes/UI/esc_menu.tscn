@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy3xtjx7kjmc6"]
+
+[ext_resource type="Script" uid="uid://ba101ql6k1mku" path="res://scenes/UI/esc_menu.gd" id="1_qqiva"]
+[ext_resource type="PackedScene" uid="uid://btkomugt3p8sp" path="res://scenes/UI/change_scene_button.tscn" id="2_jjfny"]
+[ext_resource type="Theme" uid="uid://bdg2t4vau6s17" path="res://scenes/UI/TextTheme.tres" id="2_np8wt"]
+[ext_resource type="PackedScene" uid="uid://cxvfrcbgbeimp" path="res://scenes/UI/audio_bus_slider.tscn" id="2_wd7rv"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EscMenu" type="PanelContainer" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -191.0
+offset_top = -100.0
+offset_right = 191.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qqiva")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EscMenu"]
+layout_mode = 2
+
+[node name="MusicVolume" parent="EscMenu/VBoxContainer" instance=ExtResource("2_wd7rv")]
+layout_mode = 2
+
+[node name="SfxVolume" parent="EscMenu/VBoxContainer" instance=ExtResource("2_wd7rv")]
+layout_mode = 2
+bus_name = "SFX"
+
+[node name="Resume" type="Button" parent="EscMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_np8wt")
+theme_override_font_sizes/font_size = 32
+text = "Resume"
+
+[node name="Restart" type="Button" parent="EscMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_np8wt")
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
+[node name="ChangeSceneButton" parent="EscMenu/VBoxContainer" instance=ExtResource("2_jjfny")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Go to menu"
+new_scene_file_path = "res://scenes/UI/game_menu.tscn"
+
+[connection signal="button_up" from="EscMenu/VBoxContainer/Resume" to="EscMenu" method="_on_resume_button_up"]
+[connection signal="button_up" from="EscMenu/VBoxContainer/Restart" to="EscMenu" method="_on_restart_button_up"]

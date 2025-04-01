@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=4 uid="uid://db6i4aumtc2tx"]
+
+[ext_resource type="PackedScene" uid="uid://bporm4yk51bu3" path="res://scenes/worlds/Components/finish_area.tscn" id="1_4e78u"]
+[ext_resource type="PackedScene" uid="uid://bb1e51bf0kfc8" path="res://scenes/PlayerData/player.tscn" id="1_k4x7t"]
+[ext_resource type="PackedScene" uid="uid://b4cni5qek1p7v" path="res://scenes/worlds/Components/restart_area.tscn" id="2_2l7ha"]
+[ext_resource type="PackedScene" uid="uid://cy3xtjx7kjmc6" path="res://scenes/UI/esc_menu.tscn" id="3_s3le8"]
+[ext_resource type="PackedScene" uid="uid://ced0uyxcoevbs" path="res://scenes/UI/level_results.tscn" id="4_k4x7t"]
+[ext_resource type="TileSet" uid="uid://b774thi0r10cy" path="res://assets/tileSet.tres" id="5_s3le8"]
+[ext_resource type="Texture2D" uid="uid://crtxnk4mg0od0" path="res://assets/White.png" id="6_k4x7t"]
+[ext_resource type="PackedScene" uid="uid://jrccc2y41ksc" path="res://scenes/worlds/Second/second_level.tscn" id="8_54knu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4x7t"]
+size = Vector2(147, 75)
+
+[node name="FirstLevel" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(677, -364)
+zoom = Vector2(0.695, 0.695)
+
+[node name="Player" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_k4x7t")]
+position = Vector2(-42, -473)
+mirroredCopy = NodePath("../Reflection")
+
+[node name="Reflection" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_k4x7t")]
+position = Vector2(-28, -255)
+is_reflection = true
+mirroredCopy = NodePath("../Player")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+tile_map_data = PackedByteArray("AAD///v/AAABAAEAAAAAAPv/AAABAAEAAAABAPv/AAABAAAAAAACAPv/AAABAAAAAAAEAPv/AAABAAAAAAAGAPv/AAABAAAAAAAHAPv/AAABAAAAAAAIAPv/AAABAAAAAAAJAPv/AAABAAAAAAAKAPv/AAABAAAAAAALAPv/AAABAAAAAAAMAPv/AAABAAAAAAANAPv/AAABAAAAAAAOAPv/AAABAAAAAAAPAPv/AAABAAAAAAAQAPv/AAABAAAAAAD///X/AAABAAEAADAAAPX/AAABAAEAADABAPX/AAABAAEAADACAPX/AAABAAEAADADAPX/AAABAAEAADAEAPX/AAABAAEAADAFAPX/AAABAAEAADAGAPX/AAABAAEAADAHAPX/AAABAAEAADAIAPX/AAABAAEAADAJAPX/AAABAAEAADAKAPX/AAABAAEAADALAPX/AAABAAEAADAMAPX/AAABAAEAADANAPX/AAABAAEAADAOAPX/AAABAAEAADAPAPX/AAABAAEAADAQAPX/AAABAAEAADARAPX/AAABAAEAADASAPX/AAABAAEAADD//wEAAAABAAEAADAAAAEAAAABAAEAAAABAAEAAAABAAEAAAACAAEAAAABAAEAAAADAAEAAAABAAEAAAAEAAEAAAABAAEAAAAFAAEAAAABAAEAAAAGAAEAAAABAAEAAAAHAAEAAAABAAEAAAAIAAEAAAABAAEAAAAJAAEAAAABAAEAAAAKAAEAAAABAAEAAAALAAEAAAABAAEAAAAMAAEAAAABAAEAAAANAAEAAAABAAEAAAAOAAEAAAABAAEAAAAPAAEAAAABAAEAAAAQAAEAAAABAAEAAAARAAEAAAABAAEAAAD+//v/AAABAAEAAAD9//b/AAABAAEAAFD9//f/AAABAAEAAFD9//j/AAABAAEAAFD9//n/AAABAAEAAFD9//r/AAABAAEAAFD9//v/AAABAAEAAFD9//z/AAABAAEAAFD9//3/AAABAAEAAFD9//7/AAABAAEAAFD9////AAABAAEAAFD9/wAAAAABAAEAAFD9/wEAAAABAAEAADD+/wEAAAABAAEAADD9//X/AAABAAEAADD+//X/AAABAAEAADATAPX/AAABAAEAAGATAPb/AAABAAEAAGATAPf/AAABAAEAAGATAPj/AAABAAEAAGATAAEAAAABAAEAAGATAAAAAAABAAEAAGATAP//AAABAAEAAGATAP7/AAABAAEAAGATAP3/AAABAAAAAAATAPz/AAABAAAAAAATAPv/AAABAAAAAAATAPr/AAABAAAAAAATAPn/AAABAAAAAAARAPv/AAABAAAAAAARAPr/AAABAAAAAAASAAEAAAABAAEAAAAFAPv/AAABAAAAAAARAPz/AAABAAAAAAABAPr/AAABAAAAAAABAPz/AAABAAAAAAAEAP3/AAABAAEAAGAEAPz/AAABAAEAAGAEAPr/AAABAAEAAGAEAPn/AAABAAEAAGADAPv/AAABAAAAAAAEAPb/AAABAAEAAFAEAAAAAAABAAEAAFADAPr/AAAAAAEAAAADAPz/AAAAAAEAADAFAPn/AAABAAEAAAAGAPn/AAABAAEAAAAFAPr/AAABAAEAAFAGAPr/AAABAAEAAFAGAP7/AAABAAEAAGAGAP//AAABAAEAAGAGAAAAAAABAAEAAGAHAPn/AAABAAEAADAHAPr/AAABAAEAAGAIAPj/AAABAAEAAGAIAPn/AAABAAEAAGAIAPr/AAABAAEAAGAIAPf/AAABAAEAAGAHAP7/AAAAAAEAAAAIAP7/AAAAAAEAAAAHAP//AAABAAEAAAAIAP//AAABAAEAAAAHAAAAAAABAAEAAFAIAAAAAAABAAEAAFAJAP//AAABAAEAAFAJAAAAAAABAAEAAFALAPj/AAABAAEAADAJAPr/AAABAAEAAGAOAPj/AAABAAEAAFAOAPn/AAABAAEAAFAOAPr/AAABAAEAAFANAPz/AAAAAAEAADA=")
+tile_set = ExtResource("5_s3le8")
+
+[node name="PointLight2D" type="PointLight2D" parent="TileMapLayer"]
+position = Vector2(159.5, -32)
+scale = Vector2(28.7, 0.96)
+blend_mode = 2
+texture = ExtResource("6_k4x7t")
+
+[node name="FinishArea" parent="." instance=ExtResource("1_4e78u")]
+position = Vector2(1483, -358)
+
+[node name="RestartArea" parent="." instance=ExtResource("2_2l7ha")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RestartArea"]
+position = Vector2(639.5, -118.5)
+shape = SubResource("RectangleShape2D_k4x7t")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RestartArea"]
+position = Vector2(281, -319)
+polygon = PackedVector2Array(-30, 0, 0, 80, 30, 0)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="RestartArea"]
+position = Vector2(1081, -319)
+polygon = PackedVector2Array(-30, 0, 0, 80, 30, 0)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="RestartArea"]
+position = Vector2(280, -401)
+rotation = 3.14159
+polygon = PackedVector2Array(-30, 0, 0, 80, 30, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="EscMenu" parent="CanvasLayer" instance=ExtResource("3_s3le8")]
+metadata/_edit_use_anchors_ = true
+
+[node name="Results" parent="CanvasLayer" instance=ExtResource("4_k4x7t")]
+visible = false
+new_scene = ExtResource("8_54knu")

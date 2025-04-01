@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://ced0uyxcoevbs"]
+
+[ext_resource type="Theme" uid="uid://bdg2t4vau6s17" path="res://scenes/UI/TextTheme.tres" id="1_q4vxa"]
+[ext_resource type="Script" uid="uid://du10yywixiwlg" path="res://scenes/UI/level_results.gd" id="1_sa3dv"]
+[ext_resource type="PackedScene" uid="uid://btkomugt3p8sp" path="res://scenes/UI/change_scene_button.tscn" id="2_sa3dv"]
+
+[node name="Results" type="VBoxContainer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -448.0
+offset_top = -103.5
+offset_bottom = 103.5
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_sa3dv")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme = ExtResource("1_q4vxa")
+text = "Your time:
+(0) sec"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Menu" parent="HBoxContainer" instance=ExtResource("2_sa3dv")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Menu"
+new_scene_file_path = "res://scenes/UI/game_menu.tscn"
+
+[node name="NextLevel" parent="HBoxContainer" instance=ExtResource("2_sa3dv")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Next"

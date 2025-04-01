@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bsodf8mtl5kjn"]
+[gd_scene load_steps=21 format=3 uid="uid://bsodf8mtl5kjn"]
 
 [ext_resource type="Theme" uid="uid://bdg2t4vau6s17" path="res://scenes/UI/TextTheme.tres" id="1_aeiwg"]
 [ext_resource type="PackedScene" uid="uid://bwplps4itk5l1" path="res://scenes/worlds/Tutorial/tutorial_world.tscn" id="4_qhcbv"]
@@ -8,7 +8,20 @@
 [ext_resource type="Shader" uid="uid://b33drkgmsa4bn" path="res://scenes/UI/sparkle.gdshader" id="7_rmouo"]
 [ext_resource type="Texture2D" uid="uid://bmg1k86caldmb" path="res://icon.svg" id="8_6gb6r"]
 [ext_resource type="TileSet" uid="uid://b774thi0r10cy" path="res://assets/tileSet.tres" id="9_6gb6r"]
-[ext_resource type="Script" uid="uid://dcgeie8ygpuwl" path="res://scenes/UI/music_volume.gd" id="9_qhcbv"]
+[ext_resource type="PackedScene" uid="uid://cxvfrcbgbeimp" path="res://scenes/UI/audio_bus_slider.tscn" id="9_qhcbv"]
+[ext_resource type="PackedScene" uid="uid://db6i4aumtc2tx" path="res://scenes/worlds/First/first_level.tscn" id="9_vw6lw"]
+[ext_resource type="PackedScene" uid="uid://jrccc2y41ksc" path="res://scenes/worlds/Second/second_level.tscn" id="10_08p2n"]
+[ext_resource type="PackedScene" uid="uid://bjo5l22exw3kh" path="res://scenes/worlds/Third/third_level.tscn" id="11_2xjdb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhcbv"]
+shader = ExtResource("7_rmouo")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/alpha = -0.5
+shader_parameter/shney_disperse = 1.0
+shader_parameter/shney_speed = 0.5
+shader_parameter/twist_speed = 1.0
+shader_parameter/rota_speed = 1.0
+shader_parameter/curve_ci = 0.3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ivsh"]
 atlas = ExtResource("5_25th1")
@@ -68,16 +81,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhcbv"]
-shader = ExtResource("7_rmouo")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/alpha = -0.5
-shader_parameter/shney_disperse = 1.0
-shader_parameter/shney_speed = 0.5
-shader_parameter/twist_speed = 1.0
-shader_parameter/rota_speed = 1.0
-shader_parameter/curve_ci = 0.3
-
 [node name="GameMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -104,6 +107,11 @@ theme = ExtResource("1_aeiwg")
 theme_override_font_sizes/font_size = 24
 text = "UNDER CONSTRUCT"
 
+[node name="SlimeTitle" type="Sprite2D" parent="VBoxContainer2/Construct"]
+position = Vector2(125, -59)
+scale = Vector2(0.785, 0.785)
+texture = ExtResource("6_5ivsh")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -118,60 +126,69 @@ offset_bottom = 74.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TestWorldButton" parent="VBoxContainer" instance=ExtResource("4_ywgnr")]
-visible = false
-layout_mode = 2
-text = "test_world"
-
 [node name="TutorialButton" parent="VBoxContainer" instance=ExtResource("4_ywgnr")]
 layout_mode = 2
 text = "Tutorial world"
 new_scene = ExtResource("4_qhcbv")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Icon" type="Sprite2D" parent="VBoxContainer/TutorialButton"]
+material = SubResource("ShaderMaterial_qhcbv")
+position = Vector2(504, 30)
+texture = ExtResource("8_6gb6r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer"]
 texture_filter = 1
-position = Vector2(154, 560)
+position = Vector2(-256, 274)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_6gb6r")
 autoplay = "default"
 speed_scale = 0.8
 
-[node name="SlimeTitle" type="Sprite2D" parent="."]
-position = Vector2(638, 116)
-scale = Vector2(0.785, 0.785)
-texture = ExtResource("6_5ivsh")
-
-[node name="Icon" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_qhcbv")
-position = Vector2(914, 316)
-texture = ExtResource("8_6gb6r")
-
-[node name="MusicVolume" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_left = 714.0
-offset_top = 640.0
-offset_right = 1269.0
-offset_bottom = 704.0
-script = ExtResource("9_qhcbv")
-bus_name = "Music"
-
-[node name="Label" type="Label" parent="MusicVolume"]
-layout_mode = 2
-theme = ExtResource("1_aeiwg")
-text = "Music"
-
-[node name="HSlider" type="HSlider" parent="MusicVolume"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-max_value = 1.0
-step = 0.001
-value = 0.6
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="TileMapLayer" type="TileMapLayer" parent="VBoxContainer"]
 texture_filter = 1
+position = Vector2(-410, -286)
 scale = Vector2(10, 10)
-tile_map_data = PackedByteArray(0, 0, 0, 0, 4, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 4, 0, 0, 0, 1, 0, 1, 0, 0, 48, 255, 255, 4, 0, 0, 0, 1, 0, 1, 0, 0, 0)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 4, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 4, 0, 0, 0, 1, 0, 1, 0, 0, 0, 255, 255, 4, 0, 0, 0, 1, 0, 1, 0, 0, 0)
 tile_set = ExtResource("9_6gb6r")
 
-[connection signal="value_changed" from="MusicVolume/HSlider" to="MusicVolume" method="_on_h_slider_value_changed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ChangeSceneButton" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ywgnr")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lvl1"
+new_scene = ExtResource("9_vw6lw")
+
+[node name="ChangeSceneButton2" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ywgnr")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lvl2"
+new_scene = ExtResource("10_08p2n")
+
+[node name="ChangeSceneButton3" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ywgnr")]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Lvl3"
+new_scene = ExtResource("11_2xjdb")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -368.0
+offset_top = -99.0
+offset_right = -18.0
+offset_bottom = -7.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MusicVolume" parent="VBoxContainer3" instance=ExtResource("9_qhcbv")]
+layout_mode = 2
+
+[node name="SFXVolume" parent="VBoxContainer3" instance=ExtResource("9_qhcbv")]
+layout_mode = 2
+bus_name = "SFX"
