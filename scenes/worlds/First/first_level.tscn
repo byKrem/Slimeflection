@@ -85,4 +85,4 @@ offset_right = 365.0
 offset_bottom = -685.0
 theme = ExtResource("9_6k27a")
 theme_override_font_sizes/font_size = 48
-text = "Altitude desynс"
+text = "Altitude desync"

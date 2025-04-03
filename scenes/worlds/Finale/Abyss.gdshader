@@ -6,6 +6,7 @@ shader_type canvas_item;
 uniform vec4 color : source_color;
 uniform float fog_alpha = 0.5;
 uniform int OCTAVES = 4;
+uniform bool effect_on = false;
 uniform bool enable_pixelation = true;
 uniform int pixelation_amount = 150;
 uniform sampler2D fog_mask;  // Texture mask for fog control
@@ -66,12 +67,14 @@ void fragment() {
     // Get the fog density from the texture mask
     float mask_value = texture(fog_mask, UV).r;  // Assuming the mask is grayscale
 
-	float move_noise = texture(fog_mask, shifted_uv).r;
-	float noise = UV.x * (((UV.x + 0.01) * move_noise - 0.01) * 75.0);
-    noise += sin(UV.x * 10.0 + TIME * 2.0) * 0.1;
-    // Modulate the fog density by the mask value
     final *= mask_value;
-	final += noise;
+
+	if (effect_on){
+		float move_noise = texture(fog_mask, shifted_uv).r;
+		float noise = UV.x * (((UV.x + 0.01) * move_noise - 0.01) * 75.0);
+	    noise += sin(UV.x * 10.0 + TIME * 2.0) * 0.1;
+		final += noise;
+	}
 
     // Use the alpha value of the color to control the overall fog opacity
     COLOR = vec4(color.rgb, final * color.a * fog_alpha);

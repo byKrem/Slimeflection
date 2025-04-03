@@ -173,17 +173,17 @@ target1 = NodePath("../Player")
 target2 = NodePath("../Reflection")
 
 [node name="Player" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_nmslc")]
-position = Vector2(0, -105)
+position = Vector2(0, -790)
 collision_layer = 3
 mirroredCopy = NodePath("../Reflection")
 
 [node name="Reflection" parent="." node_paths=PackedStringArray("mirroredCopy") instance=ExtResource("1_nmslc")]
-position = Vector2(0, 131.655)
+position = Vector2(0, 501)
 collision_layer = 2
 is_reflection = true
 mirroredCopy = NodePath("../Player")
 
-[node name="Hints" type="Node" parent="."]
+[node name="Hints" type="Node2D" parent="."]
 script = ExtResource("3_ewcsd")
 
 [node name="ThisIsYou" type="Label" parent="Hints"]

@@ -99,7 +99,7 @@ polygon = PackedVector2Array(-29, 0, 0, 69, 29, 0)
 [node name="CollisionPolygon2D8" type="CollisionPolygon2D" parent="RestartArea"]
 position = Vector2(1480, -640)
 rotation = 3.14159
-polygon = PackedVector2Array(-29, 0, 0, 69, 29, 0)
+polygon = PackedVector2Array(-29, 0, 0, 65, 29, 0)
 
 [node name="CollisionPolygon2D9" type="CollisionPolygon2D" parent="RestartArea"]
 position = Vector2(1199, -760)

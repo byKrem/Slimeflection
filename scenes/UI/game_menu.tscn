@@ -1,6 +1,5 @@
 [gd_scene load_steps=26 format=4 uid="uid://bsodf8mtl5kjn"]
 
-[ext_resource type="Theme" uid="uid://bdg2t4vau6s17" path="res://scenes/UI/TextTheme.tres" id="1_aeiwg"]
 [ext_resource type="PackedScene" uid="uid://bwplps4itk5l1" path="res://scenes/worlds/Tutorial/tutorial_world.tscn" id="4_qhcbv"]
 [ext_resource type="PackedScene" uid="uid://btkomugt3p8sp" path="res://scenes/UI/change_scene_button.tscn" id="4_ywgnr"]
 [ext_resource type="Texture2D" uid="uid://dc6gsjuhou33p" path="res://assets/SlimeSpriteSheet.png" id="5_25th1"]
@@ -15,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://b7lbo2m5hq8gd" path="res://scenes/worlds/Fourth/fourth_level.tscn" id="12_jbx0l"]
 [ext_resource type="PackedScene" uid="uid://d0kd3omrgudfp" path="res://scenes/worlds/Fifth/fifth_level.tscn" id="13_td2on"]
 [ext_resource type="PackedScene" uid="uid://rnhy0merbh2c" path="res://scenes/worlds/Sixth/sixth_level.tscn" id="14_br3u5"]
+[ext_resource type="PackedScene" uid="uid://ccbkxkpucd6qy" path="res://scenes/worlds/Finale/finale_level.tscn" id="15_td2on"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vw6lw"]
 
@@ -118,22 +118,15 @@ scale = Vector2(10, 10)
 tile_map_data = PackedByteArray("AAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAD//wQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAP//AAAAAAAAAAAHAP//AAAAAAAAAAAGAP//AAAAAAAAAAAFAP//AAAAAAAAAAAEAP//AAAAAAAAAAADAP//AAAAAAAAAAACAP//AAAAAAAAAAABAP//AAAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAADAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
 tile_set = ExtResource("9_6gb6r")
 
-[node name="Construct" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("1_aeiwg")
-theme_override_font_sizes/font_size = 24
-text = "UNDER CONSTRUCT"
-
-[node name="SlimeTitle" type="Sprite2D" parent="VBoxContainer/Construct"]
-position = Vector2(125, -59)
-scale = Vector2(0.785, 0.785)
-texture = ExtResource("6_5ivsh")
-
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = SubResource("Theme_08p2n")
+
+[node name="SlimeTitle" type="Sprite2D" parent="VBoxContainer/HSeparator"]
+position = Vector2(228, -87)
+scale = Vector2(0.785, 0.785)
+texture = ExtResource("6_5ivsh")
 
 [node name="TutorialButton" parent="VBoxContainer" instance=ExtResource("4_ywgnr")]
 layout_mode = 2
@@ -213,6 +206,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Finale
 "
+new_scene = ExtResource("15_td2on")
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="."]
 layout_mode = 1
