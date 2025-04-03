@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bsodf8mtl5kjn"]
+[gd_scene load_steps=26 format=4 uid="uid://bsodf8mtl5kjn"]
 
 [ext_resource type="Theme" uid="uid://bdg2t4vau6s17" path="res://scenes/UI/TextTheme.tres" id="1_aeiwg"]
 [ext_resource type="PackedScene" uid="uid://bwplps4itk5l1" path="res://scenes/worlds/Tutorial/tutorial_world.tscn" id="4_qhcbv"]
@@ -12,6 +12,14 @@
 [ext_resource type="PackedScene" uid="uid://db6i4aumtc2tx" path="res://scenes/worlds/First/first_level.tscn" id="9_vw6lw"]
 [ext_resource type="PackedScene" uid="uid://jrccc2y41ksc" path="res://scenes/worlds/Second/second_level.tscn" id="10_08p2n"]
 [ext_resource type="PackedScene" uid="uid://bjo5l22exw3kh" path="res://scenes/worlds/Third/third_level.tscn" id="11_2xjdb"]
+[ext_resource type="PackedScene" uid="uid://b7lbo2m5hq8gd" path="res://scenes/worlds/Fourth/fourth_level.tscn" id="12_jbx0l"]
+[ext_resource type="PackedScene" uid="uid://d0kd3omrgudfp" path="res://scenes/worlds/Fifth/fifth_level.tscn" id="13_td2on"]
+[ext_resource type="PackedScene" uid="uid://rnhy0merbh2c" path="res://scenes/worlds/Sixth/sixth_level.tscn" id="14_br3u5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vw6lw"]
+
+[sub_resource type="Theme" id="Theme_08p2n"]
+HSeparator/styles/separator = SubResource("StyleBoxEmpty_vw6lw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qhcbv"]
 shader = ExtResource("7_rmouo")
@@ -89,29 +97,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -309.0
-offset_top = 175.0
-offset_right = 309.0
-offset_bottom = 271.0
-grow_horizontal = 2
-
-[node name="Construct" type="Label" parent="VBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("1_aeiwg")
-theme_override_font_sizes/font_size = 24
-text = "UNDER CONSTRUCT"
-
-[node name="SlimeTitle" type="Sprite2D" parent="VBoxContainer2/Construct"]
-position = Vector2(125, -59)
-scale = Vector2(0.785, 0.785)
-texture = ExtResource("6_5ivsh")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -120,14 +105,39 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -230.0
-offset_top = -74.0
+offset_top = -159.0
 offset_right = 230.0
-offset_bottom = 74.0
+offset_bottom = 159.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TileMapLayer" type="TileMapLayer" parent="VBoxContainer"]
+texture_filter = 1
+position = Vector2(-410, -196)
+scale = Vector2(10, 10)
+tile_map_data = PackedByteArray("AAAAAAQAAAAAAAAAAAABAAQAAAAAAAAAAAD//wQAAAAAAAAAAAACAAQAAAAAAAAAAAADAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAFAAQAAAAAAAAAAAAGAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAIAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAAAAAAAAAAAAAAAIAP//AAAAAAAAAAAHAP//AAAAAAAAAAAGAP//AAAAAAAAAAAFAP//AAAAAAAAAAAEAP//AAAAAAAAAAADAP//AAAAAAAAAAACAP//AAAAAAAAAAABAP//AAAAAAAAAAAAAP//AAAAAAAAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAAAAAMAAAAAAAAAAAABAAMAAAAAAAAAAAACAAMAAAAAAAAAAAADAAMAAAAAAAAAAAAEAAMAAAAAAAAAAAAFAAMAAAAAAAAAAAAGAAMAAAAAAAAAAAAHAAMAAAAAAAAAAAAHAAIAAAAAAAAAAAAHAAEAAAAAAAAAAAAHAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAADAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAABAAIAAAAAAAAAAAACAAIAAAAAAAAAAAADAAIAAAAAAAAAAAAEAAIAAAAAAAAAAAAFAAIAAAAAAAAAAAAGAAIAAAAAAAAAAAAGAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAADAAEAAAAAAAAAAAACAAEAAAAAAAAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAA=")
+tile_set = ExtResource("9_6gb6r")
+
+[node name="Construct" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_aeiwg")
+theme_override_font_sizes/font_size = 24
+text = "UNDER CONSTRUCT"
+
+[node name="SlimeTitle" type="Sprite2D" parent="VBoxContainer/Construct"]
+position = Vector2(125, -59)
+scale = Vector2(0.785, 0.785)
+texture = ExtResource("6_5ivsh")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme = SubResource("Theme_08p2n")
+
 [node name="TutorialButton" parent="VBoxContainer" instance=ExtResource("4_ywgnr")]
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
 text = "Tutorial world"
 new_scene = ExtResource("4_qhcbv")
 
@@ -136,20 +146,19 @@ material = SubResource("ShaderMaterial_qhcbv")
 position = Vector2(504, 30)
 texture = ExtResource("8_6gb6r")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer"]
+[node name="TileMapLayer2" type="TileMapLayer" parent="VBoxContainer"]
 texture_filter = 1
-position = Vector2(-256, 274)
+position = Vector2(-410, -196)
 scale = Vector2(10, 10)
+tile_map_data = PackedByteArray("AAAAAAQAAAABAAEAAAABAAQAAAABAAEAAAD//wQAAAABAAEAAAA=")
+tile_set = ExtResource("9_6gb6r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VBoxContainer/TileMapLayer2"]
+texture_filter = 1
+position = Vector2(15.4, 56)
 sprite_frames = SubResource("SpriteFrames_6gb6r")
 autoplay = "default"
 speed_scale = 0.8
-
-[node name="TileMapLayer" type="TileMapLayer" parent="VBoxContainer"]
-texture_filter = 1
-position = Vector2(-410, -286)
-scale = Vector2(10, 10)
-tile_map_data = PackedByteArray(0, 0, 0, 0, 4, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 4, 0, 0, 0, 1, 0, 1, 0, 0, 0, 255, 255, 4, 0, 0, 0, 1, 0, 1, 0, 0, 0)
-tile_set = ExtResource("9_6gb6r")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -157,20 +166,53 @@ layout_mode = 2
 [node name="ChangeSceneButton" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ywgnr")]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
 text = "Lvl1"
 new_scene = ExtResource("9_vw6lw")
 
 [node name="ChangeSceneButton2" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ywgnr")]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
 text = "Lvl2"
 new_scene = ExtResource("10_08p2n")
 
 [node name="ChangeSceneButton3" parent="VBoxContainer/HBoxContainer" instance=ExtResource("4_ywgnr")]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
 text = "Lvl3"
 new_scene = ExtResource("11_2xjdb")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ChangeSceneButton" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("4_ywgnr")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Lvl4"
+new_scene = ExtResource("12_jbx0l")
+
+[node name="ChangeSceneButton2" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("4_ywgnr")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Lvl5"
+new_scene = ExtResource("13_td2on")
+
+[node name="ChangeSceneButton3" parent="VBoxContainer/HBoxContainer2" instance=ExtResource("4_ywgnr")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
+text = "Lvl6"
+new_scene = ExtResource("14_br3u5")
+
+[node name="TutorialButton2" parent="VBoxContainer" instance=ExtResource("4_ywgnr")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Finale
+"
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="."]
 layout_mode = 1

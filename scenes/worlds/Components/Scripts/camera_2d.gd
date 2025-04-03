@@ -6,5 +6,7 @@ extends Camera2D
 
 
 func _process(_delta: float) -> void:
-	if target1 and target2:
-		global_position = (target1.global_position + target2.global_position) / 2
+	if target1:
+		global_position.x = target1.global_position.x
+	elif target2:
+		global_position.x = target2.global_position.x
